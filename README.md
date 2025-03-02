@@ -1,50 +1,67 @@
-# React + TypeScript + Vite
+# WebSocket 测试工具
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个现代化的 WebSocket 测试工具，类似于 Postman，但专为 WebSocket 连接设计。
 
-Currently, two official plugins are available:
+## 功能特点
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **项目管理**：创建和管理多个 WebSocket 项目
+- **WebSocket 连接**：连接到不同的 WebSocket 服务器
+- **信令管理**：保存和复用常用的 WebSocket 信令
+- **消息记录**：查看发送和接收的 WebSocket 消息
+- **现代化界面**：友好的用户界面和交互体验
+- **深色模式**：支持深色模式，减少眼睛疲劳
 
-## Expanding the ESLint configuration
+## 技术栈
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React 18
+- TypeScript
+- Tailwind CSS
+- Zustand (状态管理)
+- React Router
+- Headless UI
 
-- Configure the top-level `parserOptions` property like this:
+## 开发指南
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 安装依赖
+
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 开发环境
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+### 构建项目
+
+```bash
+npm run build
+```
+
+### 预览构建
+
+```bash
+npm run preview
+```
+
+## 部署
+
+项目使用 Cloudflare Workers 进行部署：
+
+```bash
+npm run deploy
+```
+
+## 使用说明
+
+1. 创建新项目并设置 WebSocket URL
+2. 连接到 WebSocket 服务器
+3. 创建和管理常用信令
+4. 发送自定义消息或保存的信令
+5. 查看发送和接收的消息历史
+
+## 贡献
+
+欢迎提交 Pull Request 或提出 Issue！
