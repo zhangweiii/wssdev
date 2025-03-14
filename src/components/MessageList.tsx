@@ -33,7 +33,7 @@ export default function MessageList({ messages }: MessageListProps) {
   if (messages.length === 0) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-gray-500">暂无消息记录</p>
+        <p className="text-gray-500">No messages</p>
       </div>
     );
   }
@@ -43,19 +43,17 @@ export default function MessageList({ messages }: MessageListProps) {
       {messages.map((message) => (
         <div
           key={message.id}
-          className={`flex flex-col p-3 rounded-lg shadow-sm max-w-full ${
-            message.type === 'sent'
-              ? 'bg-primary-50 border-l-4 border-primary-500'
-              : 'bg-white border-l-4 border-gray-500'
-          }`}
+          className={`flex flex-col p-3 rounded-lg shadow-sm max-w-full ${message.type === 'sent'
+            ? 'bg-primary-50 border-l-4 border-primary-500'
+            : 'bg-white border-l-4 border-gray-500'
+            }`}
         >
           <div className="flex justify-between items-center mb-2">
             <span
-              className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                message.type === 'sent'
-                  ? 'bg-primary-100 text-primary-800'
-                  : 'bg-gray-100 text-gray-800'
-              }`}
+              className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${message.type === 'sent'
+                ? 'bg-primary-100 text-primary-800'
+                : 'bg-gray-100 text-gray-800'
+                }`}
             >
               {message.type === 'sent' ? '已发送' : '已接收'}
             </span>

@@ -14,14 +14,14 @@ export default function SettingsPage() {
   const [showClearDataConfirm, setShowClearDataConfirm] = useState(false);
   
   const handleClearData = () => {
-    // 调用确认
+    // Show confirmation
     setShowClearDataConfirm(true);
   };
   
   const handleConfirmClearData = () => {
-    // 清除本地存储
+    // Clear local storage
     localStorage.removeItem('websocket-manager-storage');
-    // 重新加载页面
+    // Reload page
     window.location.reload();
   };
 
@@ -29,18 +29,18 @@ export default function SettingsPage() {
     <div>
       <div className="sm:flex sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">设置</h1>
-          <p className="mt-2 text-sm text-gray-700">配置WebSocket测试工具</p>
+          <h1 className="text-2xl font-semibold text-gray-900">Settings</h1>
+          <p className="mt-2 text-sm text-gray-700">Configure WebSocket Testing Tool</p>
         </div>
       </div>
       
       <div className="mt-8 space-y-10 divide-y divide-gray-900/10">
-        {/* 常规设置 */}
+        {/* General Settings */}
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
           <div className="px-4 sm:px-0">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">常规设置</h2>
+            <h2 className="text-base font-semibold leading-7 text-gray-900">General Settings</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              基本应用配置选项
+              Basic application configuration options
             </p>
           </div>
 
@@ -49,8 +49,8 @@ export default function SettingsPage() {
               <div className="max-w-2xl space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium leading-6 text-gray-900">深色模式</h3>
-                    <p className="mt-1 text-sm text-gray-500">启用深色模式以在夜间使用时减少眼睛疲劳</p>
+                    <h3 className="text-sm font-medium leading-6 text-gray-900">Dark Mode</h3>
+                    <p className="mt-1 text-sm text-gray-500">Enable dark mode to reduce eye strain when using at night</p>
                   </div>
                   <Switch
                     checked={darkMode}
@@ -60,7 +60,7 @@ export default function SettingsPage() {
                       'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2'
                     )}
                   >
-                    <span className="sr-only">使用深色模式</span>
+                    <span className="sr-only">Use dark mode</span>
                     <span
                       className={classNames(
                         darkMode ? 'translate-x-5' : 'translate-x-0',
@@ -101,8 +101,8 @@ export default function SettingsPage() {
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium leading-6 text-gray-900">自动重连</h3>
-                    <p className="mt-1 text-sm text-gray-500">断开连接后自动尝试重新连接</p>
+                    <h3 className="text-sm font-medium leading-6 text-gray-900">Auto Reconnect</h3>
+                    <p className="mt-1 text-sm text-gray-500">Automatically try to reconnect after disconnection</p>
                   </div>
                   <Switch
                     checked={autoReconnect}
@@ -112,7 +112,7 @@ export default function SettingsPage() {
                       'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2'
                     )}
                   >
-                    <span className="sr-only">断开连接后自动尝试重新连接</span>
+                    <span className="sr-only">Automatically try to reconnect after disconnection</span>
                     <span
                       className={classNames(
                         autoReconnect ? 'translate-x-5' : 'translate-x-0',
@@ -126,12 +126,12 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* 消息设置 */}
+        {/* Message Settings */}
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
           <div className="px-4 sm:px-0">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">消息设置</h2>
+            <h2 className="text-base font-semibold leading-7 text-gray-900">Message Settings</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              配置消息存储和显示选项
+              Configure message storage and display options
             </p>
           </div>
 
@@ -140,8 +140,8 @@ export default function SettingsPage() {
               <div className="max-w-2xl space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium leading-6 text-gray-900">保存消息历史</h3>
-                    <p className="mt-1 text-sm text-gray-500">关闭页面后保留消息历史记录</p>
+                    <h3 className="text-sm font-medium leading-6 text-gray-900">Save Message History</h3>
+                    <p className="mt-1 text-sm text-gray-500">Keep message history after closing the page</p>
                   </div>
                   <Switch
                     checked={saveMessages}
@@ -151,7 +151,7 @@ export default function SettingsPage() {
                       'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2'
                     )}
                   >
-                    <span className="sr-only">关闭页面后保留消息历史记录</span>
+                    <span className="sr-only">Keep message history after closing the page</span>
                     <span
                       className={classNames(
                         saveMessages ? 'translate-x-5' : 'translate-x-0',
@@ -164,7 +164,7 @@ export default function SettingsPage() {
                 {saveMessages && (
                   <div>
                     <label htmlFor="messagesToSave" className="block text-sm font-medium leading-6 text-gray-900">
-                      保存消息数量
+                      Number of Messages to Save
                     </label>
                     <div className="mt-2">
                       <input
@@ -178,7 +178,7 @@ export default function SettingsPage() {
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">设置要保存的最大消息数量（10-1000）</p>
+                    <p className="mt-1 text-sm text-gray-500">Set the maximum number of messages to save (10-1000)</p>
                   </div>
                 )}
               </div>
@@ -186,12 +186,12 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* 数据管理 */}
+        {/* Data Management */}
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
           <div className="px-4 sm:px-0">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">数据管理</h2>
+            <h2 className="text-base font-semibold leading-7 text-gray-900">Data Management</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              管理应用存储的数据
+              Manage data stored by the application
             </p>
           </div>
 
@@ -199,56 +199,17 @@ export default function SettingsPage() {
             <div className="px-4 py-6 sm:p-8">
               <div className="max-w-2xl space-y-6">
                 <div>
-                  <h3 className="text-sm font-medium leading-6 text-gray-900">清除所有数据</h3>
+                  <h3 className="text-sm font-medium leading-6 text-gray-900">Clear All Data</h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    删除所有存储的项目和信令。此操作无法撤销。
+                    Remove all saved projects, signals, and settings from this browser
                   </p>
-                  <div className="mt-4">
-                    {!showClearDataConfirm ? (
-                      <button
-                        type="button"
-                        onClick={handleClearData}
-                        className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-                      >
-                        清除所有数据
-                      </button>
-                    ) : (
-                      <div>
-                        <p className="text-sm text-red-600 font-semibold mb-3">
-                          确定要清除所有数据吗？此操作无法撤销。
-                        </p>
-                        <div className="flex space-x-3">
-                          <button
-                            type="button"
-                            onClick={handleConfirmClearData}
-                            className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-                          >
-                            确认清除
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setShowClearDataConfirm(false)}
-                            className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                          >
-                            取消
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
-                <div>
-                  <h3 className="text-sm font-medium leading-6 text-gray-900">导出数据</h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    导出所有项目和信令数据为JSON文件
-                  </p>
-                  <div className="mt-4">
+                  <div className="mt-3">
                     <button
                       type="button"
-                      className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                      onClick={handleClearData}
+                      className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     >
-                      导出数据
+                      Clear All Data
                     </button>
                   </div>
                 </div>
@@ -257,6 +218,47 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
+      
+      {/* Confirmation Dialog */}
+      {showClearDataConfirm && (
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <div className="sm:flex sm:items-start">
+                <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                  <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                  </svg>
+                </div>
+                <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <h3 className="text-base font-semibold leading-6 text-gray-900">Clear All Data</h3>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                      Are you sure you want to clear all data? This action cannot be undone and will remove all your projects, signals, and settings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                <button
+                  type="button"
+                  className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                  onClick={handleConfirmClearData}
+                >
+                  Clear Data
+                </button>
+                <button
+                  type="button"
+                  className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                  onClick={() => setShowClearDataConfirm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

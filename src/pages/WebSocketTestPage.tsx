@@ -28,24 +28,24 @@ export default function WebSocketTestPage() {
   const [messageInput, setMessageInput] = useState('');
   const [showSignalSelector, setShowSignalSelector] = useState(false);
 
-  // 根据当前项目过滤信令
+  // Filter signals based on current project
   const filteredSignals = currentProject
     ? signals.filter((signal) => signal.projectId === currentProject.id)
     : [];
 
-  // 根据连接状态确定按钮状态
+  // Determine button status based on connection status
   const isConnected = connectionStatus === ConnectionStatus.CONNECTED;
   const isConnecting = connectionStatus === ConnectionStatus.CONNECTING;
   const isError = connectionStatus === ConnectionStatus.ERROR;
 
-  // 当用户选择项目时，自动连接
+  // Auto-connect when user selects a project
   useEffect(() => {
     if (currentProject && connectionStatus === ConnectionStatus.DISCONNECTED) {
       connect(currentProject.websocketUrl);
     }
   }, [currentProject, connectionStatus, connect]);
 
-  // 发送消息
+  // Send message
   const handleSendMessage = (e: FormEvent) => {
     e.preventDefault();
     if (!messageInput.trim()) return;
@@ -54,13 +54,13 @@ export default function WebSocketTestPage() {
     setMessageInput('');
   };
 
-  // 选择信令
+  // Select signal
   const handleSelectSignal = (signal: Signal) => {
     setMessageInput(signal.payload);
     setShowSignalSelector(false);
   };
 
-  // 连接/断开WebSocket
+  // Connect/disconnect WebSocket
   const handleConnectionToggle = () => {
     if (isConnected) {
       disconnect();
@@ -72,8 +72,8 @@ export default function WebSocketTestPage() {
   if (!currentProject) {
     return (
       <div className="text-center py-16">
-        <h2 className="text-lg font-medium text-gray-900">未选择项目</h2>
-        <p className="mt-1 text-sm text-gray-500">请先选择或创建一个项目</p>
+        <h2 className="text-lg font-medium text-gray-900">No Project Selected</h2>
+        <p className="mt-1 text-sm text-gray-500">Please select or create a project first</p>
         <div className="mt-6">
           <button
             type="button"
@@ -81,7 +81,7 @@ export default function WebSocketTestPage() {
             className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500"
           >
             <ArrowPathIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-            前往项目管理
+            Go to Project Management
           </button>
         </div>
       </div>
@@ -91,13 +91,13 @@ export default function WebSocketTestPage() {
   return (
     <div className="h-[calc(100vh-10rem)]">
       <div className="flex flex-col h-full">
-        {/* 头部信息 */}
+        {/* Header Information */}
         <div className="mb-4">
           <div className="sm:flex sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-2xl font-semibold text-gray-900">WebSocket测试</h1>
+              <h1 className="text-2xl font-semibold text-gray-900">WebSocket Test</h1>
               <p className="mt-2 text-sm text-gray-700 flex items-center">
-                连接地址: {currentProject.websocketUrl}
+                Connection URL: {currentProject.websocketUrl}
                 <a
                   href={currentProject.websocketUrl.replace('ws://', 'http://').replace('wss://', 'https://')}
                   target="_blank"
@@ -121,12 +121,12 @@ export default function WebSocketTestPage() {
                 }`}
               >
                 {isConnected
-                  ? '已连接'
+                  ? 'Connected'
                   : isConnecting
-                  ? '连接中...'
+                  ? 'Connecting...'
                   : isError
-                  ? '连接失败'
-                  : '未连接'}
+                  ? 'Connection Failed'
+                  : 'Disconnected'}
               </span>
               <button
                 type="button"
@@ -141,12 +141,12 @@ export default function WebSocketTestPage() {
                 {isConnected ? (
                   <>
                     <StopIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-                    断开连接
+                    Disconnect
                   </>
                 ) : (
                   <>
                     <PlayIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-                    {isConnecting ? '连接中...' : '连接'}
+                    {isConnecting ? 'Connecting...' : 'Connect'}
                   </>
                 )}
               </button>
@@ -156,25 +156,25 @@ export default function WebSocketTestPage() {
                 className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               >
                 <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-                清空消息
+                Clear Messages
               </button>
             </div>
           </div>
         </div>
 
-        {/* 消息列表 */}
+        {/* Message List */}
         <div className="flex-1 overflow-hidden bg-gray-50 rounded-lg shadow mb-4">
           <div className="h-full overflow-y-auto p-4 max-w-full">
             <MessageList messages={messages} />
           </div>
         </div>
 
-        {/* 发送区域 */}
+        {/* Send Area */}
         <div className="bg-white shadow rounded-lg p-4">
           <form onSubmit={handleSendMessage} className="flex flex-col">
             <div className="flex justify-between items-center mb-2">
               <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                发送消息
+                Send Message
               </label>
               <div className="relative">
                 <button
@@ -183,14 +183,14 @@ export default function WebSocketTestPage() {
                   className="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 >
                   <DocumentTextIcon className="-ml-0.5 mr-1.5 h-4 w-4" aria-hidden="true" />
-                  选择信令
+                  Select Signal
                 </button>
 
                 {showSignalSelector && (
                   <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
                     <div className="py-1">
                       <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider font-semibold">
-                        已保存的信令
+                        Saved Signals
                       </div>
                       {filteredSignals.length > 0 ? (
                         <div className="max-h-60 overflow-y-auto">
@@ -210,7 +210,7 @@ export default function WebSocketTestPage() {
                         </div>
                       ) : (
                         <div className="px-4 py-2 text-sm text-gray-500">
-                          暂无信令，请先添加信令
+                          No signals saved for this project
                         </div>
                       )}
                       <div className="border-t border-gray-100 my-1"></div>
@@ -222,7 +222,7 @@ export default function WebSocketTestPage() {
                         }}
                         className="block w-full text-left px-4 py-2 text-sm text-primary-600 hover:bg-gray-100"
                       >
-                        管理信令
+                        Manage Signals
                       </button>
                     </div>
                   </div>
@@ -246,7 +246,7 @@ export default function WebSocketTestPage() {
                 disabled={!isConnected || !messageInput.trim()}
                 className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50"
               >
-                发送
+                Send
               </button>
             </div>
           </form>

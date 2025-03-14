@@ -21,10 +21,10 @@ export default function Layout({ children }: LayoutProps) {
   const { projects, currentProject, setCurrentProject } = useStore();
 
   const navigation = [
-    { name: '项目管理', href: '/', icon: FolderIcon, current: location.pathname === '/' },
-    { name: 'WebSocket测试', href: '/test', icon: SignalIcon, current: location.pathname === '/test' },
-    { name: '信令管理', href: '/signals', icon: DocumentTextIcon, current: location.pathname === '/signals' },
-    { name: '设置', href: '/settings', icon: Cog6ToothIcon, current: location.pathname === '/settings' },
+    { name: 'Project Management', href: '/', icon: FolderIcon, current: location.pathname === '/' },
+    { name: 'WebSocket Test', href: '/test', icon: SignalIcon, current: location.pathname === '/test' },
+    { name: 'Signal Management', href: '/signals', icon: DocumentTextIcon, current: location.pathname === '/signals' },
+    { name: 'Settings', href: '/settings', icon: Cog6ToothIcon, current: location.pathname === '/settings' },
   ];
 
   return (
@@ -66,7 +66,7 @@ export default function Layout({ children }: LayoutProps) {
                 >
                   <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                     <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
-                      <span className="sr-only">关闭侧边栏</span>
+                      <span className="sr-only">Close sidebar</span>
                       <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
                     </button>
                   </div>
@@ -74,7 +74,7 @@ export default function Layout({ children }: LayoutProps) {
                 
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                   <div className="flex h-16 shrink-0 items-center">
-                    <h1 className="text-xl font-bold text-primary-600">WebSocket测试工具</h1>
+                    <h1 className="text-xl font-bold text-primary-600">WebSocket Testing Tool</h1>
                   </div>
                   <nav className="flex flex-1 flex-col">
                     <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -104,7 +104,7 @@ export default function Layout({ children }: LayoutProps) {
                         </ul>
                       </li>
                       <li>
-                        <div className="text-xs font-semibold leading-6 text-gray-400">项目列表</div>
+                        <div className="text-xs font-semibold leading-6 text-gray-400">Project List</div>
                         <ul role="list" className="-mx-2 mt-2 space-y-1">
                           {projects.map((project) => (
                             <li key={project.id}>
@@ -149,7 +149,7 @@ export default function Layout({ children }: LayoutProps) {
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
-            <h1 className="text-xl font-bold text-primary-600">WebSocket测试工具</h1>
+            <h1 className="text-xl font-bold text-primary-600">WebSocket Testing Tool</h1>
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -178,7 +178,7 @@ export default function Layout({ children }: LayoutProps) {
                 </ul>
               </li>
               <li>
-                <div className="text-xs font-semibold leading-6 text-gray-400">项目列表</div>
+                <div className="text-xs font-semibold leading-6 text-gray-400">Project List</div>
                 <ul role="list" className="-mx-2 mt-2 space-y-1">
                   {projects.map((project) => (
                     <li key={project.id}>
@@ -218,7 +218,7 @@ export default function Layout({ children }: LayoutProps) {
       <div className="lg:pl-72">
         <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
           <button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setSidebarOpen(true)}>
-            <span className="sr-only">打开侧边栏</span>
+            <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
 
@@ -228,7 +228,7 @@ export default function Layout({ children }: LayoutProps) {
               {currentProject ? (
                 <h2 className="text-lg font-semibold">{currentProject.name}</h2>
               ) : (
-                <h2 className="text-lg font-semibold text-gray-500">未选择项目</h2>
+                <h2 className="text-lg font-semibold text-gray-500">No project selected</h2>
               )}
             </div>
           </div>

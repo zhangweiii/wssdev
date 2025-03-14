@@ -71,8 +71,8 @@ export default function ProjectsPage() {
     <div>
       <div className="sm:flex sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">项目管理</h1>
-          <p className="mt-2 text-sm text-gray-700">创建并管理您的WebSocket项目</p>
+          <h1 className="text-2xl font-semibold text-gray-900">Project Management</h1>
+          <p className="mt-2 text-sm text-gray-700">Create and manage your WebSocket projects</p>
         </div>
         <div className="mt-4 sm:mt-0">
           <button
@@ -81,7 +81,7 @@ export default function ProjectsPage() {
             className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
             <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-            新建项目
+            New Project
           </button>
         </div>
       </div>
@@ -92,16 +92,16 @@ export default function ProjectsPage() {
             <thead className="bg-gray-50">
               <tr>
                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                  项目名称
+                  Project Name
                 </th>
                 <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">
                   WebSocket URL
                 </th>
                 <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
-                  创建时间
+                  Created At
                 </th>
                 <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                  <span className="sr-only">操作</span>
+                  <span className="sr-only">Actions</span>
                 </th>
               </tr>
             </thead>
@@ -116,10 +116,12 @@ export default function ProjectsPage() {
                     <div className="text-xs text-gray-500 sm:hidden mt-1">{project.websocketUrl}</div>
                   </td>
                   <td 
-                    className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell"
+                    className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
                     onClick={() => handleProjectClick(project.id)}
                   >
-                    {project.websocketUrl}
+                    <div className="max-w-xs overflow-hidden text-ellipsis">
+                      {project.websocketUrl}
+                    </div>
                   </td>
                   <td 
                     className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"
@@ -138,7 +140,7 @@ export default function ProjectsPage() {
                         className="text-primary-600 hover:text-primary-900 p-1"
                       >
                         <PencilIcon className="h-5 w-5" aria-hidden="true" />
-                        <span className="sr-only">编辑</span>
+                        <span className="sr-only">Edit</span>
                       </button>
                       <button
                         type="button"
@@ -149,7 +151,7 @@ export default function ProjectsPage() {
                         className="text-red-600 hover:text-red-900 p-1"
                       >
                         <TrashIcon className="h-5 w-5" aria-hidden="true" />
-                        <span className="sr-only">删除</span>
+                        <span className="sr-only">Delete</span>
                       </button>
                     </div>
                   </td>
@@ -159,16 +161,16 @@ export default function ProjectsPage() {
           </table>
         ) : (
           <div className="py-16 text-center">
-            <p className="text-gray-500">暂无项目，请创建新项目</p>
+            <p className="text-gray-500">No projects yet, please create a new project</p>
           </div>
         )}
       </div>
       
-      {/* 添加项目模态框 */}
+      {/* Add Project Modal */}
       <Modal
         open={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
-        title="创建新项目"
+        title="Create New Project"
       >
         <ProjectForm
           onSubmit={handleAddProject}
@@ -176,14 +178,14 @@ export default function ProjectsPage() {
         />
       </Modal>
       
-      {/* 编辑项目模态框 */}
+      {/* Edit Project Modal */}
       <Modal
         open={isEditModalOpen}
         onClose={() => {
           setIsEditModalOpen(false);
           setCurrentEditingProject(null);
         }}
-        title="编辑项目"
+        title="Edit Project"
       >
         {editingProject && (
           <ProjectForm
@@ -197,18 +199,18 @@ export default function ProjectsPage() {
         )}
       </Modal>
       
-      {/* 删除项目确认框 */}
+      {/* Delete Project Modal */}
       <Modal
         open={isDeleteModalOpen}
         onClose={() => {
           setIsDeleteModalOpen(false);
           setCurrentDeletingProject(null);
         }}
-        title="删除项目"
+        title="Delete Project"
         size="sm"
       >
         <div className="text-sm text-gray-500 mb-4">
-          你确定要删除项目 <span className="font-semibold">{deletingProject?.name}</span> 吗？此操作无法撤销，并且会删除项目下所有信令。
+          Are you sure you want to delete project <span className="font-semibold">{deletingProject?.name}</span>? This action cannot be undone.
         </div>
         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
           <button
@@ -216,8 +218,7 @@ export default function ProjectsPage() {
             className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
             onClick={handleDeleteProject}
           >
-            <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-            删除
+            Delete
           </button>
           <button
             type="button"
@@ -227,7 +228,7 @@ export default function ProjectsPage() {
               setCurrentDeletingProject(null);
             }}
           >
-            取消
+            Cancel
           </button>
         </div>
       </Modal>

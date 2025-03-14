@@ -16,7 +16,7 @@ export default function SignalsPage() {
   const [currentEditingSignal, setCurrentEditingSignal] = useState<string | null>(null);
   const [currentDeletingSignal, setCurrentDeletingSignal] = useState<string | null>(null);
   
-  // 根据当前项目过滤信令
+  // Filter signals based on current project
   const filteredSignals = currentProject 
     ? signals.filter(signal => signal.projectId === currentProject.id)
     : [];
@@ -79,8 +79,8 @@ export default function SignalsPage() {
   if (!currentProject) {
     return (
       <div className="text-center py-16">
-        <h2 className="text-lg font-medium text-gray-900">未选择项目</h2>
-        <p className="mt-1 text-sm text-gray-500">请先选择或创建一个项目</p>
+        <h2 className="text-lg font-medium text-gray-900">No Project Selected</h2>
+        <p className="mt-1 text-sm text-gray-500">Please select or create a project first</p>
         <div className="mt-6">
           <button
             type="button"
@@ -88,7 +88,7 @@ export default function SignalsPage() {
             className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
             <ArrowPathIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-            前往项目管理
+            Go to Project Management
           </button>
         </div>
       </div>
@@ -99,9 +99,9 @@ export default function SignalsPage() {
     <div>
       <div className="sm:flex sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">信令管理</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">Signal Management</h1>
           <p className="mt-2 text-sm text-gray-700">
-            管理项目 <span className="font-medium">{currentProject.name}</span> 的WebSocket信令
+            Manage WebSocket signals for project <span className="font-medium">{currentProject.name}</span>
           </p>
         </div>
         <div className="mt-4 sm:mt-0">
@@ -111,7 +111,7 @@ export default function SignalsPage() {
             className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
             <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-            添加信令
+            Add Signal
           </button>
         </div>
       </div>
@@ -122,16 +122,16 @@ export default function SignalsPage() {
             <thead className="bg-gray-50">
               <tr>
                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                  信令名称
+                  Signal Name
                 </th>
                 <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
-                  描述
+                  Description
                 </th>
                 <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
                   Payload
                 </th>
                 <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                  <span className="sr-only">操作</span>
+                  <span className="sr-only">Actions</span>
                 </th>
               </tr>
             </thead>
@@ -157,7 +157,7 @@ export default function SignalsPage() {
                         className="text-green-600 hover:text-green-900 p-1"
                       >
                         <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                          发送
+                          Send
                         </span>
                       </button>
                       <button
@@ -166,7 +166,7 @@ export default function SignalsPage() {
                         className="text-primary-600 hover:text-primary-900 p-1"
                       >
                         <PencilIcon className="h-5 w-5" aria-hidden="true" />
-                        <span className="sr-only">编辑</span>
+                        <span className="sr-only">Edit</span>
                       </button>
                       <button
                         type="button"
@@ -174,7 +174,7 @@ export default function SignalsPage() {
                         className="text-red-600 hover:text-red-900 p-1"
                       >
                         <TrashIcon className="h-5 w-5" aria-hidden="true" />
-                        <span className="sr-only">删除</span>
+                        <span className="sr-only">Delete</span>
                       </button>
                     </div>
                   </td>
@@ -184,16 +184,16 @@ export default function SignalsPage() {
           </table>
         ) : (
           <div className="py-16 text-center">
-            <p className="text-gray-500">当前项目暂无信令，请添加新的信令</p>
+            <p className="text-gray-500">No signals for this project yet, please add a new signal</p>
           </div>
         )}
       </div>
       
-      {/* 添加信令模态框 */}
+      {/* Add Signal Modal */}
       <Modal
         open={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
-        title="添加信令"
+        title="Add Signal"
       >
         {currentProject && (
           <SignalForm
@@ -203,16 +203,16 @@ export default function SignalsPage() {
         )}
       </Modal>
       
-      {/* 编辑信令模态框 */}
+      {/* Edit Signal Modal */}
       <Modal
         open={isEditModalOpen}
         onClose={() => {
           setIsEditModalOpen(false);
           setCurrentEditingSignal(null);
         }}
-        title="编辑信令"
+        title="Edit Signal"
       >
-        {editingSignal && currentProject && (
+        {editingSignal && (
           <SignalForm
             initialData={editingSignal}
             onSubmit={handleEditSignal}
@@ -224,18 +224,18 @@ export default function SignalsPage() {
         )}
       </Modal>
       
-      {/* 删除信令确认框 */}
+      {/* Delete Signal Modal */}
       <Modal
         open={isDeleteModalOpen}
         onClose={() => {
           setIsDeleteModalOpen(false);
           setCurrentDeletingSignal(null);
         }}
-        title="删除信令"
+        title="Delete Signal"
         size="sm"
       >
         <div className="text-sm text-gray-500 mb-4">
-          你确定要删除信令 <span className="font-semibold">{deletingSignal?.name}</span> 吗？此操作无法撤销。
+          Are you sure you want to delete signal <span className="font-semibold">{deletingSignal?.name}</span>? This action cannot be undone.
         </div>
         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
           <button
@@ -243,8 +243,7 @@ export default function SignalsPage() {
             className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
             onClick={handleDeleteSignal}
           >
-            <TrashIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-            删除
+            Delete
           </button>
           <button
             type="button"
@@ -254,7 +253,7 @@ export default function SignalsPage() {
               setCurrentDeletingSignal(null);
             }}
           >
-            取消
+            Cancel
           </button>
         </div>
       </Modal>
